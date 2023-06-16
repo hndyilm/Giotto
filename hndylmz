@@ -1,0 +1,32 @@
+Hi everyone,
+
+I am trying to merge my Visium objects with function "joinGiottoObject". 
+
+dataDir <- 'path/to/data'
+## obese upper
+N_pros = createGiottoVisiumObject(
+    visium_dir = paste0(dataDir,'/Visium_FFPE_Human_Normal_Prostate/'),
+    expr_data = 'raw',
+    png_name = 'tissue_lowres_image.png',
+    gene_column_index = 2,
+    instructions = instrs
+)
+
+## obese lower
+C_pros = createGiottoVisiumObject(
+    visium_dir = paste0(dataDir,'/Visium_FFPE_Human_Prostate_Cancer/'),
+    expr_data = 'raw',
+    png_name = 'tissue_lowres_image.png',
+    gene_column_index = 2,
+    instructions = instrs
+)
+
+testcombo = joinGiottoObjects(gobject_list = list(N_pros, C_pros),
+    gobject_names = c('NP', 'CP'),
+    join_method = 'shift', x_padding = 1000)
+
+This is where I get an error:Error in dimnames(x) <- dn : 'dimnames' applied to non-array
+
+I could not understand. Any hints about that?
+
+Thanks
